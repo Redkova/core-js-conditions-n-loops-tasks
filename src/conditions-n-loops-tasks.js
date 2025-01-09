@@ -178,11 +178,12 @@ function convertToRomanNumerals(num) {
  *  '1950.2'  => 'one nine five zero point two'
  */
 function convertNumberToString(numberStr) {
+  const convertToString = numberStr;
   let result = '';
   let index = 0;
 
-  while (index < numberStr.length) {
-    const char = numberStr[index];
+  while (index < convertToString.length) {
+    const char = convertToString[index];
     let word = '';
 
     switch (char) {
@@ -227,7 +228,11 @@ function convertNumberToString(numberStr) {
         word = '';
     }
 
-    result = result === '' ? `${word}` : `${result} ${word}`;
+    if (result === '') {
+      result = `${word}`;
+    } else {
+      result = `${result} ${word}`;
+    }
 
     index += 1;
   }
@@ -246,8 +251,18 @@ function convertNumberToString(numberStr) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let leftSide = 0;
+  let rightSide = str.length - 1;
+
+  while (leftSide < rightSide) {
+    if (str[leftSide] !== str[rightSide]) {
+      return false;
+    }
+    leftSide += 1;
+    rightSide -= 1;
+  }
+  return true;
 }
 
 /**
